@@ -14,7 +14,7 @@ Steps.init = function() {
 
 Steps.buildParseUrl = function() {
   var url = Config.getUrl();
-  $('#parse-url').html(url + '/parse');
+  $('#parse-url').html(url + '/joydancing');
 }
 
 Steps.bindBtn = function(id, callback) {
@@ -63,7 +63,7 @@ ParseRequest.postData = function() {
       e.preventDefault();
     });
   });
-  XHR.POST('/parse/classes/GameScore');
+  XHR.POST('/joydancing/classes/GameScore');
 }
 
 ParseRequest.getData = function() {
@@ -79,7 +79,7 @@ ParseRequest.getData = function() {
       e.preventDefault();
     })
   });
-  XHR.GET('/parse/classes/GameScore');
+  XHR.GET('/joydancing/classes/GameScore');
 }
 
 ParseRequest.postCloudCodeData = function() {
@@ -91,7 +91,7 @@ ParseRequest.postCloudCodeData = function() {
     // open third step
     Steps.showWorkingMessage();
   });
-  XHR.POST('/parse/functions/hello');
+  XHR.POST('/joydancing/functions/hello');
 }
 
 
@@ -133,14 +133,14 @@ XHR.setCallback = function(callback) {
 XHR.POST = function(path, callback) {
   var seed = {"score":1337,"playerName":"Sean Plott","cheatMode":false}
   this.xhttp.open("POST", Config.getUrl() + path, true);
-  this.xhttp.setRequestHeader("X-Parse-Application-Id", "myAppId");
+  this.xhttp.setRequestHeader("X-Parse-Application-Id", "app");
   this.xhttp.setRequestHeader("Content-type", "application/json");
   this.xhttp.send(JSON.stringify(seed));
 }
 
 XHR.GET = function(path, callback) {
   this.xhttp.open("GET", Config.getUrl() + path + '/' + Store.objectId, true);
-  this.xhttp.setRequestHeader("X-Parse-Application-Id", "myAppId");
+  this.xhttp.setRequestHeader("X-Parse-Application-Id", "app");
   this.xhttp.setRequestHeader("Content-type", "application/json");
   this.xhttp.send(null);
 }
