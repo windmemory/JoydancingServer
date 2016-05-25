@@ -2,9 +2,12 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { submitCourse } from '../actions/info';
 
-let SubmitButton = ({ onClick }) => {
+let SubmitButton = ({ onClick, message }) => {
   return (
-    <button onClick={onClick}>Submit</button>
+    <div>
+      <button onClick={onClick}>Submit</button>
+      <p>{message}</p>
+    </div>
   )
 }
 
@@ -17,6 +20,12 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-SubmitButton = connect(null, mapDispatchToProps)(SubmitButton)
+const mapStateToProps = (state) => {
+  return {
+    message: state.aliServer.message,
+  }
+}
+
+SubmitButton = connect(mapStateToProps, mapDispatchToProps)(SubmitButton)
 
 export default SubmitButton;

@@ -20,11 +20,20 @@ export const addCredValue = (key, value) => {
   }
 }
 
-export const SUBMIT_COURSE = 'SUBMIT_COURSE';
+export const SUBMITED_COURSE = 'SUBMITED_COURSE';
 export const submitCourse = () => {
   return (dispatch, getState) => {
-    
-    //TODO
-    console.log(createCourseObj(getState()))
+    let courseObj = createCourseObj(getState());
+    axios({
+      'method': 'post',
+      'url': '/joydancing/classes/courses',
+      'headers': {
+        'Content-Type': 'application/json',
+        'X-Parse-Application-Id': 'app',
+      },
+      'data': courseObj
+    }).then(response => {
+      console.log(response);
+    })
   }
 }
