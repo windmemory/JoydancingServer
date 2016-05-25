@@ -1,6 +1,6 @@
 body {
-  margin: 0;
-  padding: 0;
+  margin: 20px;
+  padding: 20px;
   font-family: Helvetica, Arial, sans-serif;
   font-size: 14px;
   letter-spacing: 0.2px;
@@ -21,6 +21,38 @@ a:visited {
   color: #2a6496;
 }
 
+table {
+    border-collapse: collapse;
+}
+
+table, th, td {
+  /*border: 2px solid #2a6496;*/
+}
+
+th, td {
+    padding: 5px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+tr:hover {background-color: #f5f5f5}
+
+input[type=text] {
+    border: none;
+    outline: none;
+    height: 100%;
+    width: 100%;
+}
+
+input[type=file] {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 8px 16px;
+    text-decoration: none;
+    margin: 2px 2px;
+    cursor: pointer;
+}
 
 /*
   helpers
@@ -235,4 +267,3 @@ a:visited {
 #footer ul li:last-child:after {
   content: "";
 }
-
