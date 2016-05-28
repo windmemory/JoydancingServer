@@ -1,21 +1,15 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { setVideoFiles } from '../actions/file';
-import { addValue } from '../actions/info';
 import VideoList from '../containers/VideoList';
+import VideoInput from '../containers/VideoInput';
 
-let VideoUploadBlock = ({ dispatch }) => {
-  return (
-    <div>
-      <h3>视频上传信息</h3>
-      <input id="videos" type="file" multiple onChange={e => {
-        dispatch(setVideoFiles(e.target.files));
-      }}/>
-      <VideoList />
-    </div>
-  )
-}
+const VideoUploadBlock = () => (
+  <div>
+    <h3>视频上传信息</h3>
+    <p className='lightInstruct'>请先输入视频的标题再选择视频文件</p>
+    <VideoInput />
+    <VideoList />
+  </div>
+)
 
-VideoUploadBlock = connect()(VideoUploadBlock);
 
 export default VideoUploadBlock;
