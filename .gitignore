@@ -34,3 +34,5 @@ node_modules
 
 # Mac system generated file
 .DS_Store
+
+.bundle
