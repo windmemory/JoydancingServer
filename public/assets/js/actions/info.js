@@ -30,7 +30,7 @@ export const submitCourse = () => {
       'url': '/joydancing/classes/courses',
       'headers': {
         'Content-Type': 'application/json',
-        'X-Parse-Application-Id': 'app',
+        'X-Parse-Application-Id': 'JoyDancing',
       },
       'data': courseObj
     }).then(response => {
