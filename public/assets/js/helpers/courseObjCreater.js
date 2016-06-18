@@ -36,21 +36,12 @@ const createVideosObj = (videos) => {
   var result = {};
   videos.map(video => {
     let keys = video.objectKey.slice(0, -4).split('-');
-    if (keys[1] === 'full') {
-      if (result.full === undefined) result.full = {};
-      if (keys[2] === 'l') {
-        result.full.lowLink = preLink + video.objectKey;
-      } else {
-        result.full.highLink = preLink + video.objectKey;
-      }
-    } else {
-      var partnum = keys[1],
-        type = keys[2],
-        res = (keys[3] === 'l') ? 'lowLink' : 'highLink';
-      if (result[partnum] === undefined) result[partnum] = {};
-      if (result[partnum][type] === undefined) result[partnum][type] = {};
-      result[partnum][type][res] = preLink + video.objectKey;
-    }
+    var partnum = keys[1],
+      type = keys[2],
+      res = (keys[3] === 'l') ? 'lowLink' : 'highLink';
+    if (result[partnum] === undefined) result[partnum] = {};
+    if (result[partnum][type] === undefined) result[partnum][type] = {};
+    result[partnum][type][res] = preLink + video.objectKey;
   })
 
   return result;

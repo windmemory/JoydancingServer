@@ -1,7 +1,9 @@
-import { fbTutorialVideoStr, mirrorTutorialVideoStr, fullDanceStr } from '../constant';
-
 const regForPartInfo = /Part *\d/;
-var courseName = '';
+const frontTutorialVideoStr = '正面';
+const mirrorTutorialVideoStr = '镜面';
+const fullDanceStr = '完整版';
+
+let courseName = '';
 
 export const setCourseName = (name) => {
   courseName = camelize(name);
@@ -16,26 +18,22 @@ const camelize = (str) => {
 
 export const generateName = (itemName) => {
   if (courseName === '') return '';
-  if (itemName.indexOf(fullDanceStr) > -1) {
-    if (itemName.indexOf('(1)') > -1) {
-      return `${courseName}-full-l.mp4`;
-    } else {
-      return `${courseName}-full-h.mp4`;
-    }
-  } else {
+  let pre = 'full';
+  let res = 'h';
+  let mode = 'front';
+  if (itemName.indexOf(fullDanceStr) === -1) {
     let part = itemName.match(regForPartInfo);
     if (part === null) throw 'wrong file name here!'
     else {
       let index = part[0].slice(-1);
-      let res = 'h';
-      let mode = 'fb';
-      if (itemName.indexOf('(1)') > -1) {
-        res = 'l';
-      }
-      if (itemName.indexOf(mirrorTutorialVideoStr) > -1) {
-        mode = 'mir';
-      }
-      return `${courseName}-p${index}-${mode}-${res}.mp4`;
+      pre = 'p' + index;
     }
   }
+  if (itemName.indexOf('(1)') > -1) {
+    res = 'l';
+  }
+  if (itemName.indexOf(mirrorTutorialVideoStr) > -1) {
+    mode = 'mir';
+  }
+  return `${courseName}-${pre}-${mode}-${res}.mp4`;
 }
