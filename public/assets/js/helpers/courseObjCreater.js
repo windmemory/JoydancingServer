@@ -5,15 +5,21 @@ course: {
   description: '',
   videos: {
     full: {
-      highLink: 'http://tutorial-video.oss-cn-beijing.aliyuncs.com/boomClap-p1-mir-h.mp4',
-      lowLink: '',
+      mir:{
+        highLink: 'http://tutorial-video.oss-cn-beijing.aliyuncs.com/boomClap-p1-mir-h.mp4',
+        lowLink: '',
+      },
+      front:{
+        highLink: '',
+        lowLink: '',
+      }
     },
     p1: {
       mir: {
         highLink: '',
         lowLink: '',
       },
-      fb: {
+      front: {
         highLink: '',
         lowLink: '',
       }
@@ -33,15 +39,24 @@ export const createCourseObj = (state) => {
 }
 
 const createVideosObj = (videos) => {
-  var result = {};
+  var result = [];
   videos.map(video => {
     let keys = video.objectKey.slice(0, -4).split('-');
-    var partnum = keys[1],
+    let partnum = keys[1],
       type = keys[2],
       res = (keys[3] === 'l') ? 'lowLink' : 'highLink';
-    if (result[partnum] === undefined) result[partnum] = {};
-    if (result[partnum][type] === undefined) result[partnum][type] = {};
-    result[partnum][type][res] = preLink + video.objectKey;
+    let index = 0;
+    if (partnum.indexOf('full') > -1) {
+      if (type.indexOf('mir') === -1) index++;
+    } else {
+      index = parseInt(partnum.slice(-1) * 2);
+      if (type.indexOf('mir') === -1) index++;
+    }
+    if (result[index] ===  undefined) {
+      result[index] = { name: `${keys[0]}-${partnum}-${type}` };
+    }
+    res = (keys[3] === 'l') ? 'lowLink' : 'highLink';
+    result[index][res] = preLink + video.objectKey;
   })
 
   return result;
