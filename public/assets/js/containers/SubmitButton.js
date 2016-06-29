@@ -14,7 +14,6 @@ let SubmitButton = ({ onClick, message }) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     onClick: () => {
-      console.log('here');
       dispatch(submitCourse());
     }
   }

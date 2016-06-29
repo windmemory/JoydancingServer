@@ -37,3 +37,7 @@ export const generateName = (itemName) => {
   }
   return `${courseName}-${pre}-${mode}-${res}.mp4`;
 }
+
+export const generateCoverName = () => {
+  return `${courseName}-cover.jpg`;
+}

@@ -3,6 +3,7 @@ course: {
   name: '',
   dancer: '',
   description: '',
+  coverLink: '',
   videos: {
     full: {
       mir:{
@@ -34,6 +35,7 @@ export const createCourseObj = (state) => {
     name: state.input.title,
     dancer: state.input.dancer,
     description: state.input.description,
+    coverLink: preLink + state.input.cover.objectKey,
     videos: videosObj,
   }
 }

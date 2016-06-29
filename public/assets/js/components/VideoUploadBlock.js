@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import VideoList from '../containers/VideoList';
 import VideoInput from '../containers/VideoInput';
+import VideoCoverInput from '../containers/VideoCoverInput';
 
 const VideoUploadBlock = () => (
   <div>
@@ -8,6 +9,7 @@ const VideoUploadBlock = () => (
     <p className='lightInstruct'>请先输入视频的标题再选择视频文件</p>
     <VideoInput />
     <VideoList />
+    <VideoCoverInput />
   </div>
 )
 
