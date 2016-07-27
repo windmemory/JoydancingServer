@@ -4,6 +4,7 @@
 var express = require('express');
 var ParseServer = require('parse-server').ParseServer;
 var path = require('path');
+var fs = require('fs');
 
 var databaseUri = process.env.DATABASE_URI || process.env.MONGODB_URI;
 
@@ -25,6 +26,11 @@ var api = new ParseServer({
 // If you wish you require them, you can set them as options in the initialization above:
 // javascriptKey, restAPIKey, dotNetKey, clientKey
 
+const options = {
+  key: fs.readFileSync('./JD-key.pem'),
+  cert: fs.readFileSync('./JD-cert.pem')
+};
+
 var app = express();
 
 // Serve static assets from the /public folder
@@ -39,10 +45,10 @@ app.get('/upload', function(req, res) {
 });
 
 var port = process.env.PORT || 1337;
-var httpServer = require('http').createServer(app);
-httpServer.listen(port, function() {
+var httpsServer = require('https').createServer(options, app);
+httpsServer.listen(port, function() {
     console.log('parse-server-example running on port ' + port + '.');
 });
 
 // This will enable the Live Query real-time server
-ParseServer.createLiveQueryServer(httpServer);
+ParseServer.createLiveQueryServer(httpsServer);
